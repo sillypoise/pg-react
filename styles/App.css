@@ -1,0 +1,172 @@
+:root {
+  /* Type Scale */
+  --step--2: clamp(0.5rem, calc(0.77rem + -0.17vw), 0.74rem);
+  --step--1: clamp(0.75rem, calc(0.91rem + -0.1vw), 0.89rem);
+  --step-0: clamp(1.06rem, calc(1.05rem + 0.04vw), 1.13rem);
+  --step-1: clamp(1.28rem, calc(1.22rem + 0.29vw), 1.69rem);
+  --step-2: clamp(1.53rem, calc(1.39rem + 0.72vw), 2.53rem);
+  --step-3: clamp(1.84rem, calc(1.56rem + 1.4vw), 3.8rem);
+  --step-4: clamp(2.2rem, calc(1.7rem + 2.49vw), 5.7rem);
+  --step-5: clamp(2.64rem, calc(1.8rem + 4.21vw), 8.54rem);
+  --step-6: clamp(3.17rem, calc(1.8rem + 6.89vw), 12.81rem);
+
+  /* Space Scale */
+  --space-3xs: clamp(0.25rem, calc(0.24rem + 0.04vw), 0.31rem);
+  --space-2xs: clamp(0.56rem, calc(0.56rem + 0vw), 0.56rem);
+  --space-xs: clamp(0.81rem, calc(0.8rem + 0.04vw), 0.88rem);
+  --space-s: clamp(1.06rem, calc(1.05rem + 0.04vw), 1.13rem);
+  --space-m: clamp(1.63rem, calc(1.62rem + 0.04vw), 1.69rem);
+  --space-l: clamp(2.13rem, calc(2.11rem + 0.09vw), 2.25rem);
+  --space-xl: clamp(3.19rem, calc(3.16rem + 0.13vw), 3.38rem);
+  --space-2xl: clamp(4.25rem, calc(4.21rem + 0.18vw), 4.5rem);
+  --space-3xl: clamp(6.38rem, calc(6.32rem + 0.27vw), 6.75rem);
+  --space-4xl: clamp(8.5rem, calc(8.43rem + 0.36vw), 9rem);
+  --space-5xl: clamp(12.75rem, calc(12.64rem + 0.54vw), 13.5rem);
+  --space-6xl: clamp(17rem, calc(16.86rem + 0.71vw), 18rem);
+  --space-7xl: clamp(21.25rem, calc(21.07rem + 0.89vw), 22.5rem);
+
+  /* Space One-up Pairs */
+  --space-3xs-2xs: clamp(0.25rem, calc(0.21rem + 0.22vw), 0.56rem);
+  --space-2xs-xs: clamp(0.56rem, calc(0.52rem + 0.22vw), 0.88rem);
+  --space-xs-s: clamp(0.81rem, calc(0.77rem + 0.22vw), 1.13rem);
+  --space-s-m: clamp(1.06rem, calc(0.97rem + 0.45vw), 1.69rem);
+  --space-m-l: clamp(1.63rem, calc(1.54rem + 0.45vw), 2.25rem);
+  --space-l-xl: clamp(2.13rem, calc(1.95rem + 0.89vw), 3.38rem);
+  --space-xl-2xl: clamp(3.19rem, calc(3rem + 0.94vw), 4.5rem);
+  --space-2xl-3xl: clamp(4.25rem, calc(3.89rem + 1.79vw), 6.75rem);
+  --space-3xl-4xl: clamp(6.38rem, calc(6rem + 1.88vw), 9rem);
+  --space-4xl-5xl: clamp(8.5rem, calc(7.79rem + 3.57vw), 13.5rem);
+  --space-5xl-6xl: clamp(12.75rem, calc(12rem + 3.75vw), 18rem);
+  --space-6xl-7xl: clamp(17rem, calc(16.21rem + 3.93vw), 22.5rem);
+
+  /* Custom Pairs */
+  --space-2xs-s: clamp(0.56rem, calc(0.48rem + 0.4vw), 1.13rem);
+  --space-s-l: clamp(1.06rem, calc(0.89rem + 0.85vw), 2.25rem);
+  --space-l-2xl: clamp(2.13rem, calc(1.79rem + 1.7vw), 4.5rem);
+  --space-2xl-4xl: clamp(4.25rem, calc(3.57rem + 3.39vw), 9rem);
+  --space-s-3xl: clamp(1.06rem, calc(0.25rem + 4.06vw), 6.75rem);
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: "Founders Grotesk";
+  font-size: var(--step-0);
+  padding: var(--space-m) var(--space-l);
+  color: hsl(10 10% 10%);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: var(--step-4);
+  max-inline-size: 15ch;
+}
+
+h2 {
+  font-size: var(--step-3);
+  max-inline-size: 30ch;
+}
+
+h3 {
+  font-size: var(--step-2);
+  max-inline-size: 30ch;
+}
+
+p,
+li {
+  max-inline-size: 65ch;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: currentcolor;
+}
+
+a:hover {
+  text-decoration: none;
+}
