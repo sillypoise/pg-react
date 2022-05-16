@@ -170,3 +170,25 @@ a {
 a:hover {
   text-decoration: none;
 }
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.stack > * + * {
+  margin-block-start: var(--space-m);
+}
+
+.stack:only-child {
+  block-size: 100%;
+}
+
+.cluster {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: var(--space-m);
+  align-items: start;
+}

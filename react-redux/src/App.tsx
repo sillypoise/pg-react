@@ -1,22 +1,21 @@
 import { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+
 import "../../styles/App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+import Home from "./Routes/Home";
 
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         <h1>React + Redux</h1>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
       </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
     </div>
   );
 }
