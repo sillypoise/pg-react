@@ -192,3 +192,9 @@ a:hover {
   gap: var(--space-m);
   align-items: start;
 }
+
+/* UTILITIES */
+
+.mbs {
+  margin-block-start: var(--space-xl);
+}
