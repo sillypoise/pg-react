@@ -1,3 +1,4 @@
 packages:
   - "Projects/react-redux/**"
   - "Projects/react-state/**"
+  - "Projects/react-useEffect/**"

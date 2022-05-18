@@ -1,5 +1,5 @@
 {
-  "name": "react-state",
+  "name": "react-useeffect",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,9 +10,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "immer": "^9.0.14",
-    "use-immer": "^0.7.0"
-  }
+  "license": "ISC"
 }

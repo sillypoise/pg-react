@@ -2,11 +2,17 @@ import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import "../../../styles/App.css";
+import AvoidDeeplyNestedState, {
+  TravelPlan,
+} from "./Routes/AvoidDeeplyNestedState";
+import AvoidStateDuplication from "./Routes/AvoidStateDuplication";
 import BasicUseState from "./Routes/BasicUseState";
+import DeclarativeState from "./Routes/DeclarativeState";
 
 import Home from "./Routes/Home";
 import NoLocalState from "./Routes/NoLocalState";
 import StateAsSnapshot from "./Routes/StateAsSnapshot";
+import TriggeringRenders from "./Routes/TriggeringRenders";
 
 function App() {
   return (
@@ -20,6 +26,20 @@ function App() {
           <Route path="/no-local-state" element={<NoLocalState />} />
           <Route path="/basic-usestate" element={<BasicUseState />} />
           <Route path="/state-as-snapshot" element={<StateAsSnapshot />} />
+          <Route path="/declarative-state" element={<DeclarativeState />} />
+          <Route path="/triggering-renders" element={<TriggeringRenders />} />
+          <Route
+            path="/avoid-state-duplication"
+            element={<AvoidStateDuplication />}
+          />
+          <Route
+            path="/avoid-deeply-nested-state"
+            element={<AvoidDeeplyNestedState />}
+          />{" "}
+          <Route
+            path="/avoid-deeply-nested-state-correct-solution"
+            element={<TravelPlan />}
+          />
         </Routes>
       </main>
     </div>

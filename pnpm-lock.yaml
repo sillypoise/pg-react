@@ -23,6 +23,14 @@ importers:
       typescript: 4.6.4
       vite: 2.9.9
 
+  Projects/react-state:
+    specifiers:
+      immer: ^9.0.14
+      use-immer: ^0.7.0
+    dependencies:
+      immer: 9.0.14
+      use-immer: 0.7.0_immer@9.0.14
+
   react-redux:
     specifiers:
       '@reduxjs/toolkit': ^1.8.1
@@ -915,6 +923,15 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
+
+  /use-immer/0.7.0_immer@9.0.14:
+    resolution: {integrity: sha512-Re4hjrP3a/2ABZjAc0b7AK9s626bnO+H33RO2VUhiDZ2StBz5B663K6WNNlr4QtHWaGUmvLpwt3whFvvWuolQw==}
+    peerDependencies:
+      immer: '>=2.0.0'
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      immer: 9.0.14
+    dev: false
 
   /vite/2.9.9:
     resolution: {integrity: sha512-ffaam+NgHfbEmfw/Vuh6BHKKlI/XIAhxE5QSS7gFLIngxg171mg1P3a4LSRME0z2ZU1ScxoKzphkipcYwSD5Ew==}
