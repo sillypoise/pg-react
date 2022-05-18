@@ -11,6 +11,7 @@ import DeclarativeState from "./Routes/DeclarativeState";
 
 import Home from "./Routes/Home";
 import NoLocalState from "./Routes/NoLocalState";
+import { ShareStateBetweenComponents } from "./Routes/ShareStateBetweenComponents";
 import StateAsSnapshot from "./Routes/StateAsSnapshot";
 import TriggeringRenders from "./Routes/TriggeringRenders";
 
@@ -26,7 +27,10 @@ function App() {
           <Route path="/no-local-state" element={<NoLocalState />} />
           <Route path="/basic-usestate" element={<BasicUseState />} />
           <Route path="/state-as-snapshot" element={<StateAsSnapshot />} />
-          <Route path="/declarative-state" element={<DeclarativeState />} />
+          <Route
+            path="/declarative-state"
+            element={<DeclarativeState status={"empty"} />}
+          />
           <Route path="/triggering-renders" element={<TriggeringRenders />} />
           <Route
             path="/avoid-state-duplication"
@@ -39,6 +43,10 @@ function App() {
           <Route
             path="/avoid-deeply-nested-state-correct-solution"
             element={<TravelPlan />}
+          />
+          <Route
+            path="/share-state-between-components"
+            element={<ShareStateBetweenComponents />}
           />
         </Routes>
       </main>
