@@ -1,18 +1,29 @@
 import * as React from "react";
 
 export function WithReducer() {
-  const [tasks, setTasks] = React.useState<Task[]>(initialTasks);
+  // const [tasks, setTasks] = React.useState<Task[]>(initialTasks);
+  const [tasks, dispatch] = React.useReducer(tasksReducer, initialTasks);
 
   function handleAddTask(text: string) {
-    return;
+    dispatch({
+      type: "task/add",
+      id: nextId++,
+      text: text,
+    });
   }
 
   function handleChangetask(task: Task) {
-    return;
+    dispatch({
+      type: "task/change",
+      task: task,
+    });
   }
 
   function handleDeleteTask(taskId: number) {
-    return;
+    dispatch({
+      type: "task/delete",
+      id: taskId,
+    });
   }
 
   return (
@@ -36,9 +47,16 @@ function AddTask({ onAddTask }: AddTaskProps) {
         type="text"
         placeholder="Add task"
         value={text}
-        onChange={() => undefined}
+        onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={() => undefined}>Add</button>
+      <button
+        onClick={() => {
+          setText("");
+          onAddTask(text);
+        }}
+      >
+        Add
+      </button>
     </>
   );
 }
@@ -61,7 +79,16 @@ function Task({ task, onChange, onDelete }: TaskProps) {
   if (isEditing) {
     taskContent = (
       <>
-        <input type="text" value={task.text} onChange={(e) => undefined} />
+        <input
+          type="text"
+          value={task.text}
+          onChange={(e) => {
+            onChange({
+              ...task,
+              text: e.target.value,
+            });
+          }}
+        />
         <button onClick={() => setIsEditing(false)}>Save</button>
       </>
     );
@@ -69,15 +96,24 @@ function Task({ task, onChange, onDelete }: TaskProps) {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(false)}>Edit</button>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
       </>
     );
   }
   return (
     <label>
-      <input type="checkbox" checked={task.done} onChange={(e) => undefined} />
+      <input
+        type="checkbox"
+        checked={task.done}
+        onChange={(e) => {
+          onChange({
+            ...task,
+            done: e.target.checked,
+          });
+        }}
+      />
       {taskContent}
-      <button onClick={() => undefined}>Delete</button>
+      <button onClick={() => onDelete(task.id)}>Delete</button>
     </label>
   );
 }
@@ -110,3 +146,51 @@ type TaskListProps = {
   onChangeTask: (task: Task) => void;
   onDeleteTask: (id: number) => void;
 };
+
+type TaskAddAction = {
+  type: "task/add";
+  id: number;
+  text: string;
+};
+
+type TaskChangeAction = {
+  type: "task/change";
+  task: Task;
+};
+
+type TaskDeleteAction = {
+  type: "task/delete";
+  id: number;
+};
+
+type TaskAction = TaskAddAction | TaskChangeAction | TaskDeleteAction;
+
+function tasksReducer(state: Task[], action: TaskAction): Task[] {
+  switch (action.type) {
+    case "task/add": {
+      return [
+        ...state,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
+    }
+    case "task/change": {
+      return state.map((t) => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
+    case "task/delete": {
+      return state.filter((t) => t.id !== action.id);
+    }
+    default: {
+      throw Error("Unknown task action");
+    }
+  }
+}
