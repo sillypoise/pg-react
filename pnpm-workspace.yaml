@@ -1,4 +1,6 @@
 packages:
   - "Projects/react-redux/**"
+  - "Projects/react-rtk-query/**"
   - "Projects/react-state/**"
   - "Projects/react-useEffect/**"
+  - "Projects/react-useReducer/**"
