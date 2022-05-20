@@ -12,7 +12,7 @@ export function WithReducer() {
     });
   }
 
-  function handleChangetask(task: Task) {
+  function handleChangeTask(task: Task) {
     dispatch({
       type: "task/change",
       task: task,
@@ -32,7 +32,7 @@ export function WithReducer() {
       <AddTask onAddTask={handleAddTask} />
       <TaskList
         tasks={tasks}
-        onChangeTask={handleChangetask}
+        onChangeTask={handleChangeTask}
         onDeleteTask={handleDeleteTask}
       />
     </>
