@@ -23,6 +23,12 @@ importers:
       typescript: 4.6.4
       vite: 2.9.9
 
+  Projects/react-markdoc:
+    specifiers:
+      '@markdoc/markdoc': ^0.1.2
+    dependencies:
+      '@markdoc/markdoc': 0.1.2
+
   Projects/react-redux:
     specifiers:
       '@reduxjs/toolkit': ^1.8.1
@@ -369,6 +375,11 @@ packages:
       '@jridgewell/resolve-uri': 3.0.7
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
+
+  /@markdoc/markdoc/0.1.2:
+    resolution: {integrity: sha512-3p+JTC1A0eqBdrl2UOIRoy+FLKtG1mh81R3Zzdm7FJiQIMt2mJmqmVQNDf3Md62G9rTtbj0ZuxlEattMbaslbw==}
+    engines: {node: '>=14.7.0'}
+    dev: false
 
   /@reduxjs/toolkit/1.8.1_react-redux@8.0.1:
     resolution: {integrity: sha512-Q6mzbTpO9nOYRnkwpDlFOAbQnd3g7zj7CtHAZWz5SzE5lcV97Tf8f3SzOO8BoPOMYBFgfZaqTUZqgGu+a0+Fng==}

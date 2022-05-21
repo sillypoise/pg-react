@@ -4,3 +4,4 @@ packages:
   - "Projects/react-state/**"
   - "Projects/react-useEffect/**"
   - "Projects/react-useReducer/**"
+  - "Projects/react-markdoc/**"

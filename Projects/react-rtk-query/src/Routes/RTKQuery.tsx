@@ -8,8 +8,11 @@ import { useState } from "react";
 export function RTKQuery() {
   const [postId, setPostId] = useState(10);
   const { data = [], isFetching } = useFetchPostsQuery();
-  const { data: post = [], isFetching: isFetchingPost } =
-    useFetchPostQuery(postId);
+  const {
+    data: post = [],
+    isFetching: isFetchingPost,
+    isLoading: isLoadingPost,
+  } = useFetchPostQuery(postId);
 
   console.log(post[0]);
 
@@ -32,12 +35,15 @@ export function RTKQuery() {
           ))}
         </select>
       </div>
-
-      <div>
-        <h3>{post[0]?.title}</h3>
-        <p>Written by user: {post[0]?.userId}</p>
-        <p>{post[0]?.body}</p>
-      </div>
+      {isFetchingPost ? (
+        <p>Loading...⏰</p>
+      ) : (
+        <div>
+          <h3>{post[0]?.title}</h3>
+          <p>Written by user: {post[0]?.userId}</p>
+          <p>{post[0]?.body}</p>
+        </div>
+      )}
       <br />
       <h2>All Posts</h2>
       <table>
