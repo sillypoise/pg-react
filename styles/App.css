@@ -198,13 +198,3 @@ a:hover {
 .mbs {
     margin-block-start: var(--space-xl);
 }
-
-/* FOR TESTING MARCDOC */
-.callout {
-    background-color: tomato;
-    padding: 3rem;
-    font-size: var(--step-4);
-    font-weight: 900;
-    border-radius: var(--space-m);
-    border: var(--space-3xs) solid black;
-}

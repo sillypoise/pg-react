@@ -1,0 +1,14 @@
+/* FOR TESTING MARCDOC */
+.callout {
+    padding: var(--space-m);
+    border-radius: var(--space-m);
+    border: var(--space-3xs) solid black;
+}
+
+#custom-id {
+    color: tomato;
+}
+
+.custom-class-name-here {
+    color: pink;
+}
