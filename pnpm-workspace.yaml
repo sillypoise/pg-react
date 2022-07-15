@@ -6,3 +6,4 @@ packages:
     - "Projects/react-useReducer/**"
     - "Projects/react-markdoc/**"
     - "Projects/react-query/**"
+    - "Projects/react-patterns/**"
