@@ -7,3 +7,4 @@ packages:
     - "Projects/react-markdoc/**"
     - "Projects/react-query/**"
     - "Projects/react-patterns/**"
+    - "Projects/framer-motion/**"
