@@ -21,9 +21,6 @@ export default function Home() {
                             <code>AnimatePresence</code>
                         </li>
                     </Link>
-                    <Link to="/page-transition">
-                        <li>Page Transitions</li>
-                    </Link>
                 </ul>
             </nav>
         </article>
