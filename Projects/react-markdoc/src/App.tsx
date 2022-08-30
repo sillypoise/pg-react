@@ -7,6 +7,7 @@ import "./styles/markdoc.css";
 import { ClientSideMarkdoc } from "./Routes/ClientSideMarkdoc";
 
 import Home from "./Routes/Home";
+import { CustomizingNodes } from "./Routes/CustomizingNodes";
 
 function App() {
     return (
@@ -20,6 +21,10 @@ function App() {
                     <Route
                         path="/client-side-markdoc"
                         element={<ClientSideMarkdoc />}
+                    />
+                    <Route
+                        path="/customizing-nodes"
+                        element={<CustomizingNodes />}
                     />
                 </Routes>
             </main>
