@@ -55,7 +55,7 @@ function Callout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="callout" style={{ backgroundColor: `${bg}` }}>
+        <div className="" style={{ backgroundColor: `${bg}` }}>
             <h2>{title}</h2>
             <p>{children}</p>
         </div>

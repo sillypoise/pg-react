@@ -8,6 +8,7 @@ import { ClientSideMarkdoc } from "./Routes/ClientSideMarkdoc";
 
 import Home from "./Routes/Home";
 import { CustomizingNodes } from "./Routes/CustomizingNodes";
+import { CustomNodes } from "./Routes/CustomNodes";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         path="/customizing-nodes"
                         element={<CustomizingNodes />}
                     />
+                    <Route path="/custom-nodes" element={<CustomNodes />} />
                 </Routes>
             </main>
         </div>
