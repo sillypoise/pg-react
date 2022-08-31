@@ -17,6 +17,11 @@ Attention, over here!
 {% /callout %}
 
 This is a great authoring experience.
+
+## This is a title
+
+### Maybe we should add links to each title?
+
 `;
 
 const callout = {

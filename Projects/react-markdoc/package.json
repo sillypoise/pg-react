@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@markdoc/markdoc": "^0.1.2"
+    "@markdoc/markdoc": "^0.1.7"
   }
 }

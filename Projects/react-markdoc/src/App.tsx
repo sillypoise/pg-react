@@ -9,6 +9,8 @@ import { ClientSideMarkdoc } from "./Routes/ClientSideMarkdoc";
 import Home from "./Routes/Home";
 import { CustomizingNodes } from "./Routes/CustomizingNodes";
 import { CustomNodes } from "./Routes/CustomNodes";
+import { CustomLink } from "./Routes/CustomLink";
+import { Annotations } from "./Routes/Annotations";
 
 function App() {
     return (
@@ -19,15 +21,14 @@ function App() {
             <main className="mbs">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route
-                        path="/client-side-markdoc"
-                        element={<ClientSideMarkdoc />}
-                    />
+                    <Route path="/rendering" element={<ClientSideMarkdoc />} />
                     <Route
                         path="/customizing-nodes"
                         element={<CustomizingNodes />}
                     />
                     <Route path="/custom-nodes" element={<CustomNodes />} />
+                    <Route path="/custom-link" element={<CustomLink />} />
+                    <Route path="/annotations" element={<Annotations />} />{" "}
                 </Routes>
             </main>
         </div>
