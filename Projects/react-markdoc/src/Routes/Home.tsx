@@ -15,6 +15,9 @@ export default function Home() {
                 <li>
                     <Link to="/annotations">Annotations</Link>
                 </li>
+                <li>
+                    <Link to="/frontmatter">Frontmatter</Link>
+                </li>
             </ul>
         </article>
     );

@@ -11,6 +11,7 @@ import { CustomizingNodes } from "./Routes/CustomizingNodes";
 import { CustomNodes } from "./Routes/CustomNodes";
 import { CustomLink } from "./Routes/CustomLink";
 import { Annotations } from "./Routes/Annotations";
+import { Frontmatter } from "./Routes/Frontmatter";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/custom-nodes" element={<CustomNodes />} />
                     <Route path="/custom-link" element={<CustomLink />} />
                     <Route path="/annotations" element={<Annotations />} />{" "}
+                    <Route path="/frontmatter" element={<Frontmatter />} />{" "}
                 </Routes>
             </main>
         </div>
