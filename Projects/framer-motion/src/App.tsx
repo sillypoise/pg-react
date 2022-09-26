@@ -14,10 +14,11 @@ import { BasicAnimation } from "./Routes/BasicAnimation";
 import Home from "./Routes/Home";
 import { Transitions } from "./Routes/Transitions";
 import { ExitAnimation } from "./Routes/ExitAnimations.";
+import { OnScrollAnimation } from "./Routes/OnScrollAnimation";
 
 function App() {
     let location = useLocation();
-    console.log(location);
+    // console.log(location);
 
     return (
         <motion.article
@@ -41,6 +42,10 @@ function App() {
                         <Route
                             path="/animate-presence"
                             element={<ExitAnimation />}
+                        />
+                        <Route
+                            path="/on-scroll-animation"
+                            element={<OnScrollAnimation />}
                         />
                     </Routes>
                 </AnimatePresence>

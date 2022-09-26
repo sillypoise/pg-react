@@ -21,6 +21,11 @@ export default function Home() {
                             <code>AnimatePresence</code>
                         </li>
                     </Link>
+                    <Link to="/on-scroll-animation">
+                        <li>
+                            <code>On Scroll animation</code>
+                        </li>
+                    </Link>
                 </ul>
             </nav>
         </article>
