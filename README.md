@@ -7,7 +7,7 @@ A personal playground to play with all things React. That includes:
 - Learning React libraries
 - Other React related stuff
 
-It's a messy repo and it's meant to work as a personal scratchpad for learning. Feel free to clone, edit, contribute or whatever you want to do.
+It's a messy repo and it's meant to serve as a personal scratchpad for learning. Feel free to clone, edit, contribute or whatever you want to do.
 
 It's main purpose is to exist as a consequence free playground for practice and learning.
 
