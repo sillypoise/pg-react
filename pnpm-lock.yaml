@@ -95,7 +95,10 @@ importers:
       use-immer: 0.7.0_immer@9.0.15
 
   projects/react-training:
-    specifiers: {}
+    specifiers:
+      '@reach/tabs': ^0.18.0
+    dependencies:
+      '@reach/tabs': 0.18.0
 
   projects/react-useCallback:
     specifiers: {}
@@ -547,6 +550,49 @@ packages:
       node-addon-api: 3.2.1
       node-gyp-build: 4.5.0
     dev: true
+
+  /@reach/auto-id/0.18.0:
+    resolution: {integrity: sha512-XwY1IwhM7mkHZFghhjiqjQ6dstbOdpbFLdggeke75u8/8icT8uEHLbovFUgzKjy9qPvYwZIB87rLiR8WdtOXCg==}
+    peerDependencies:
+      react: ^16.8.0 || 17.x
+      react-dom: ^16.8.0 || 17.x
+    dependencies:
+      '@reach/utils': 0.18.0
+    dev: false
+
+  /@reach/descendants/0.18.0:
+    resolution: {integrity: sha512-GXUxnM6CfrX5URdnipPIl3Tlc6geuz4xb4n61y4tVWXQX1278Ra9Jz9DMRN8x4wheHAysvrYwnR/SzAlxQzwtA==}
+    peerDependencies:
+      react: ^16.8.0 || 17.x
+      react-dom: ^16.8.0 || 17.x
+    dependencies:
+      '@reach/utils': 0.18.0
+    dev: false
+
+  /@reach/polymorphic/0.18.0:
+    resolution: {integrity: sha512-N9iAjdMbE//6rryZZxAPLRorzDcGBnluf7YQij6XDLiMtfCj1noa7KyLpEc/5XCIB/EwhX3zCluFAwloBKdblA==}
+    peerDependencies:
+      react: ^16.8.0 || 17.x
+    dev: false
+
+  /@reach/tabs/0.18.0:
+    resolution: {integrity: sha512-gTRJzStWJJtgMhn9FDEmKogAJMcqNaGZx0i1SGoTdVM+D29DBhVeRdO8qEg+I2l2k32DkmuZxG/Mrh+GZTjczQ==}
+    peerDependencies:
+      react: ^16.8.0 || 17.x
+      react-dom: ^16.8.0 || 17.x
+    dependencies:
+      '@reach/auto-id': 0.18.0
+      '@reach/descendants': 0.18.0
+      '@reach/polymorphic': 0.18.0
+      '@reach/utils': 0.18.0
+    dev: false
+
+  /@reach/utils/0.18.0:
+    resolution: {integrity: sha512-KdVMdpTgDyK8FzdKO9SCpiibuy/kbv3pwgfXshTI6tEcQT1OOwj7BAksnzGC0rPz0UholwC+AgkqEl3EJX3M1A==}
+    peerDependencies:
+      react: ^16.8.0 || 17.x
+      react-dom: ^16.8.0 || 17.x
+    dev: false
 
   /@reduxjs/toolkit/1.8.3_react-redux@8.0.2:
     resolution: {integrity: sha512-lU/LDIfORmjBbyDLaqFN2JB9YmAT1BElET9y0ZszwhSBa5Ef3t6o5CrHupw5J1iOXwd+o92QfQZ8OJpwXvsssg==}
