@@ -8,35 +8,55 @@ import {
     useState,
 } from "react";
 
-function getLocalStorageValue(key: string) {
-    let value = localStorage.getItem(key);
-    if (!value) return null;
-    try {
-        return JSON.parse(value);
-    } catch (error) {
-        return null;
-    }
+async function fetchUser(uid: string) {
+    let res = await fetch(
+        `https://jsonplaceholder.typicode.com/users?id=${uid}`
+    );
+    let data = await res.json();
+    return data;
 }
 
 function App() {
-    let [message, setMessage] = useState<string>(
-        getLocalStorageValue("message") || ""
-    );
-    let messageRef = useRef<HTMLTextAreaElement>(null);
+    let [user, setUser] = useState(null);
+    let [uid, setUid] = useState("3");
+    let [posts, setPosts] = useState(null);
 
-    function handleMessageChange(event: ChangeEvent<HTMLTextAreaElement>) {
-        setMessage(event.target.value);
-    }
+    // .then Fetch
+    // useEffect(() => {
+    //     let isCurrent = true;
+    //     fetchUser(uid).then((user) => {
+    //         if (isCurrent) setUser(user);
+    //     });
 
+    //     return () => {
+    //         isCurrent = false;
+    //     };
+    // }, [uid]);
+
+    // Async/Await Fetch
     useEffect(() => {
-        localStorage.setItem("message", JSON.stringify(message));
-    }, [message]);
+        let isCurrent = true;
 
-    useEffect(() => {
-        if (messageRef.current) {
-            messageRef.current.focus();
+        async function getUser() {
+            let user = await fetchUser(uid);
+            if (isCurrent) setUser(user);
         }
-    }, [message]);
+
+        getUser();
+
+        return () => {
+            isCurrent = false;
+        };
+    }, [uid]);
+
+    // Subscirption
+    // useEffect(() => {
+    //     let unsub = subscribeToPosts(uid, (posts) => {
+    //         setPosts(posts);
+    //     });
+
+    //     return unsub;
+    // }, [uid]);
 
     return (
         <main className="center [--center-width:theme(contentWidth.3)] mlb-l">
@@ -44,19 +64,7 @@ function App() {
                 <h2>React-Training ground</h2>
                 <p>Let's get this started!</p>
                 <hr />
-                <form action="" className="stack">
-                    <textarea
-                        className="w-full text-[color:var(--neutral-surface-0)]"
-                        name=""
-                        id=""
-                        value={message}
-                        onChange={handleMessageChange}
-                        ref={messageRef}
-                    ></textarea>
-                    <div className="self-end text-00 text-[color:var(--primary-solid-1)]">
-                        <span>{message.length}/200</span>
-                    </div>
-                </form>
+                <pre>{JSON.stringify(user, null, 4)}</pre>
             </article>
         </main>
     );
