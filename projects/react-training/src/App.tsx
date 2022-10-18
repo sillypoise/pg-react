@@ -8,46 +8,41 @@ import {
     useState,
 } from "react";
 
-async function fetchUser(uid: string) {
-    let res = await fetch(
-        `https://jsonplaceholder.typicode.com/users?id=${uid}`
-    );
-    let data = await res.json();
-    return data;
-}
-
-function useUser(uid: string) {
-    let [user, setUser] = useState(null);
+function useAuth() {
+    let [auth, setAuth] = useState<Boolean | null>(null);
+    let [authAttempted, setAuthAttempted] = useState(false);
 
     useEffect(() => {
-        let isCurrent = true;
+        // subscribe to auth
+        setAuthAttempted(true);
+        // setAuth(true);
 
-        async function getUser() {
-            let user = await fetchUser(uid);
-            if (isCurrent) setUser(user);
-        }
-
-        getUser();
-
-        return () => {
-            isCurrent = false;
-        };
-    }, [uid]);
-
-    return user;
+        // return unsub
+    }, [auth]);
+    return { auth, setAuth, authAttempted };
 }
 
 function App() {
-    let [uid, setUid] = useState("3");
-    let user = useUser(uid);
-
+    let { auth, setAuth, authAttempted } = useAuth();
+    if (!authAttempted) {
+        return <p className="center">Authenticating...</p>;
+    }
     return (
         <main className="center [--center-width:theme(contentWidth.3)] mlb-l">
             <article className="stack">
                 <h2>React-Training ground</h2>
                 <p>Let's get this started!</p>
+                <form action="" className="cluster gap-xs">
+                    <input
+                        type="checkbox"
+                        name=""
+                        id="auth-switcher"
+                        onChange={() => setAuth(!auth)}
+                    />
+                    <label htmlFor="auth-switcher">authenticate</label>
+                </form>
                 <hr />
-                <pre>{JSON.stringify(user, null, 4)}</pre>
+                {auth ? <p>Logged in</p> : <p>Logged out</p>}
             </article>
         </main>
     );
