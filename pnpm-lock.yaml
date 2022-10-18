@@ -97,8 +97,10 @@ importers:
   projects/react-training:
     specifiers:
       '@reach/tabs': ^0.18.0
+      '@reach/visually-hidden': ^0.18.0
     dependencies:
       '@reach/tabs': 0.18.0
+      '@reach/visually-hidden': 0.18.0
 
   projects/react-useCallback:
     specifiers: {}
@@ -592,6 +594,15 @@ packages:
     peerDependencies:
       react: ^16.8.0 || 17.x
       react-dom: ^16.8.0 || 17.x
+    dev: false
+
+  /@reach/visually-hidden/0.18.0:
+    resolution: {integrity: sha512-NsJ3oeHJtPc6UOeV6MHMuzQ5sl1ouKhW85i3C0S7VM+klxVlYScBZ2J4UVnWB50A2c+evdVpCnld2YeuyYYwBw==}
+    peerDependencies:
+      react: ^16.8.0 || 17.x || 18.x
+      react-dom: ^16.8.0 || 17.x || 18.x
+    dependencies:
+      '@reach/polymorphic': 0.18.0
     dev: false
 
   /@reduxjs/toolkit/1.8.3_react-redux@8.0.2:

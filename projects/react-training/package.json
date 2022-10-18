@@ -11,6 +11,7 @@
         "generate:css": "tailwindcss -i ./sp-styles/tailwind.css -o ./styles/tailwind.css"
     },
     "dependencies": {
-        "@reach/tabs": "^0.18.0"
+        "@reach/tabs": "^0.18.0",
+        "@reach/visually-hidden": "^0.18.0"
     }
 }
