@@ -1,12 +1,30 @@
 import { TabList, TabPanel, Tabs, Tab, TabPanels } from "@reach/tabs";
 import { VisuallyHidden } from "@reach/visually-hidden";
-import {
+import React, {
     ChangeEvent,
     HTMLAttributes,
     useEffect,
     useRef,
     useState,
 } from "react";
+
+function Tabs2({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>;
+}
+
+function TabList2({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>;
+}
+
+function Tab2({
+    disabled,
+    children,
+}: {
+    disabled: Boolean;
+    children: React.ReactNode;
+}) {
+    return <div>{children}</div>;
+}
 
 function App() {
     return (
