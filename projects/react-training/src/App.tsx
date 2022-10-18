@@ -16,24 +16,9 @@ async function fetchUser(uid: string) {
     return data;
 }
 
-function App() {
+function useUser(uid: string) {
     let [user, setUser] = useState(null);
-    let [uid, setUid] = useState("3");
-    let [posts, setPosts] = useState(null);
 
-    // .then Fetch
-    // useEffect(() => {
-    //     let isCurrent = true;
-    //     fetchUser(uid).then((user) => {
-    //         if (isCurrent) setUser(user);
-    //     });
-
-    //     return () => {
-    //         isCurrent = false;
-    //     };
-    // }, [uid]);
-
-    // Async/Await Fetch
     useEffect(() => {
         let isCurrent = true;
 
@@ -49,14 +34,12 @@ function App() {
         };
     }, [uid]);
 
-    // Subscirption
-    // useEffect(() => {
-    //     let unsub = subscribeToPosts(uid, (posts) => {
-    //         setPosts(posts);
-    //     });
+    return user;
+}
 
-    //     return unsub;
-    // }, [uid]);
+function App() {
+    let [uid, setUid] = useState("3");
+    let user = useUser(uid);
 
     return (
         <main className="center [--center-width:theme(contentWidth.3)] mlb-l">
