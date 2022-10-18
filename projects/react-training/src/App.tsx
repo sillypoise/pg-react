@@ -8,41 +8,30 @@ import {
     useState,
 } from "react";
 
-function useAuth() {
-    let [auth, setAuth] = useState<Boolean | null>(null);
-    let [authAttempted, setAuthAttempted] = useState(false);
-
-    useEffect(() => {
-        // subscribe to auth
-        setAuthAttempted(true);
-        // setAuth(true);
-
-        // return unsub
-    }, [auth]);
-    return { auth, setAuth, authAttempted };
-}
-
 function App() {
-    let { auth, setAuth, authAttempted } = useAuth();
-    if (!authAttempted) {
-        return <p className="center">Authenticating...</p>;
-    }
     return (
         <main className="center [--center-width:theme(contentWidth.3)] mlb-l">
             <article className="stack">
                 <h2>React-Training ground</h2>
                 <p>Let's get this started!</p>
-                <form action="" className="cluster gap-xs">
-                    <input
-                        type="checkbox"
-                        name=""
-                        id="auth-switcher"
-                        onChange={() => setAuth(!auth)}
-                    />
-                    <label htmlFor="auth-switcher">authenticate</label>
-                </form>
-                <hr />
-                {auth ? <p>Logged in</p> : <p>Logged out</p>}
+                <Tabs>
+                    <TabList>
+                        <Tab className="text-[color:var(--neutral-surface-0)]">
+                            Login
+                        </Tab>
+                        <Tab className="text-[color:var(--neutral-surface-0)]">
+                            Signup
+                        </Tab>
+                    </TabList>
+                    <TabPanels>
+                        <TabPanel>
+                            <p>Login Form</p>
+                        </TabPanel>
+                        <TabPanel>
+                            <p>Signup Form</p>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
             </article>
         </main>
     );
