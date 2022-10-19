@@ -8,7 +8,7 @@ Based off [this](https://github.com/goncy/interview-challenges/tree/main/superma
 
 ## Tasks
 
--   [ ] Podemos agregar elementos vacíos
--   [ ] Se agregan elementos vacíos a pesar de tener todo bien
--   [ ] Nuestra función de toggle no está implementada
--   [ ] Quiero simular un delay en la carga de datos de 1 segundo
+-   [x] Podemos agregar elementos vacíos
+-   [x] Se agregan elementos vacíos a pesar de tener todo bien
+-   [x] Nuestra función de toggle no está implementada
+-   [x] Quiero simular un delay en la carga de datos de 1 segundo
