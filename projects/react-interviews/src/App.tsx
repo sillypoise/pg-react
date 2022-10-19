@@ -1,19 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { api } from "./api";
 import { Item } from "./types";
 
 function App() {
     let [items, setItems] = useState<Array<Item> | null>(null);
+    // let [newItemText, setNewItemText] = useState<string>("");
     let inputItemRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
-        inputItemRef.current?.focus();
+        if (inputItemRef.current) {
+            inputItemRef.current.focus();
+        }
     }, []);
+
     useEffect(() => {
         api.list().then((data) => setItems(data));
     }, []);
-    function handleItemDelete(id: number) {
+
+    function handleItemDelete(id: Item["id"]) {
         let newItems = items && items.filter((item) => item.id !== id);
         setItems(newItems);
+    }
+
+    function handleAddItem(event: ChangeEvent<HTMLFormElement>) {
+        event.preventDefault();
+        let newTaskInput = event.target.elements.namedItem("new-task");
+        if (newTaskInput && newTaskInput instanceof HTMLInputElement) {
+            let newTaskValue = newTaskInput.value;
+            if (items) {
+                if (!newTaskValue.length) return;
+                setItems([
+                    ...items,
+                    {
+                        id: items.length + 1,
+                        text: newTaskValue,
+                        completed: false,
+                    },
+                ]);
+                newTaskInput.value = "";
+            }
+        }
     }
 
     return (
@@ -22,19 +48,22 @@ function App() {
                 <h1 className="text-3">Super Market Challenge 0</h1>
                 <form
                     action=""
-                    onSubmit={(e) => e.preventDefault()}
+                    onSubmit={handleAddItem}
                     className="stack center"
                 >
-                    <label htmlFor="list">List Items:</label>
+                    <label htmlFor="new-task">New task</label>
                     <input
                         ref={inputItemRef}
                         type="text"
-                        name="text"
-                        id="list"
+                        name="new-task"
+                        id="new-task"
+                        // onChange={(e) => setNewItemText(e.target.value)}
+                        // value={newItemText}
+                        placeholder="enter a new item..."
                     />
-                    <button>Add +</button>
+                    <button type="submit">Add +</button>
                     <ul>
-                        {!items ? (
+                        {!items?.length ? (
                             <p>Loading your data..</p>
                         ) : (
                             items.map((item) => (
