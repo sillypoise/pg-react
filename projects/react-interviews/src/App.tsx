@@ -65,7 +65,8 @@ function App() {
                     />
                     <button type="submit">Add +</button>
                 </form>
-                <ul>
+                <hr />
+                <ul className="center">
                     {!items?.length ? (
                         <p>Loading your data..</p>
                     ) : (
