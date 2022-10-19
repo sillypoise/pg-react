@@ -1,9 +1,16 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import {
+    ChangeEvent,
+    MouseEvent,
+    MouseEventHandler,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { api } from "./api";
 import { Item } from "./types";
 
 function App() {
-    let [items, setItems] = useState<Array<Item> | null>(null);
+    let [items, setItems] = useState<Array<Item>>([]);
     // let [newItemText, setNewItemText] = useState<string>("");
     let inputItemRef = useRef<HTMLInputElement>(null);
 
@@ -18,29 +25,34 @@ function App() {
     }, []);
 
     function handleItemDelete(id: Item["id"]) {
-        let newItems = items && items.filter((item) => item.id !== id);
+        let newItems = items.filter((item) => item.id !== id);
         setItems(newItems);
+    }
+
+    function handleToggle(id: Item["id"]) {
+        setItems(
+            items.map((item) =>
+                item.id === id ? { ...item, completed: !item.completed } : item
+            )
+        );
     }
 
     function handleAddItem(event: ChangeEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.dir(event.target.elements);
 
         let newTaskInput = event.target.elements.namedItem("new-task");
         if (newTaskInput && newTaskInput instanceof HTMLInputElement) {
             let newTaskValue = newTaskInput.value;
-            if (items) {
-                if (!newTaskValue.length) return;
-                setItems([
-                    ...items,
-                    {
-                        id: items.length + 1,
-                        text: newTaskValue,
-                        completed: false,
-                    },
-                ]);
-                newTaskInput.value = "";
-            }
+            if (!newTaskValue.length) return;
+            setItems([
+                ...items,
+                {
+                    id: items.length + 1,
+                    text: newTaskValue,
+                    completed: false,
+                },
+            ]);
+            newTaskInput.value = "";
         }
     }
 
@@ -72,12 +84,20 @@ function App() {
                     ) : (
                         items.map((item) => (
                             <li key={item.id} className="cluster">
-                                <span>{item.text}</span>
+                                <span
+                                    className={
+                                        item.completed ? `line-through` : ""
+                                    }
+                                    onClick={() => handleToggle(item.id)}
+                                >
+                                    {item.text}
+                                </span>
                                 <button
                                     onClick={() => handleItemDelete(item.id)}
                                 >
                                     [X]
                                 </button>
+                                <span>{JSON.stringify(item.completed)}</span>
                             </li>
                         ))
                     )}
