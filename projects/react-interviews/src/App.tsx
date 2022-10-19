@@ -24,6 +24,8 @@ function App() {
 
     function handleAddItem(event: ChangeEvent<HTMLFormElement>) {
         event.preventDefault();
+        console.dir(event.target.elements);
+
         let newTaskInput = event.target.elements.namedItem("new-task");
         if (newTaskInput && newTaskInput instanceof HTMLInputElement) {
             let newTaskValue = newTaskInput.value;
@@ -62,25 +64,23 @@ function App() {
                         placeholder="enter a new item..."
                     />
                     <button type="submit">Add +</button>
-                    <ul>
-                        {!items?.length ? (
-                            <p>Loading your data..</p>
-                        ) : (
-                            items.map((item) => (
-                                <li key={item.id} className="cluster">
-                                    <span>{item.text}</span>
-                                    <button
-                                        onClick={() =>
-                                            handleItemDelete(item.id)
-                                        }
-                                    >
-                                        [X]
-                                    </button>
-                                </li>
-                            ))
-                        )}
-                    </ul>
                 </form>
+                <ul>
+                    {!items?.length ? (
+                        <p>Loading your data..</p>
+                    ) : (
+                        items.map((item) => (
+                            <li key={item.id} className="cluster">
+                                <span>{item.text}</span>
+                                <button
+                                    onClick={() => handleItemDelete(item.id)}
+                                >
+                                    [X]
+                                </button>
+                            </li>
+                        ))
+                    )}
+                </ul>
                 <pre>{JSON.stringify(items, null, 4)}</pre>
             </article>
         </main>
