@@ -2,7 +2,7 @@
 let { light, dark, overlay } = require("./sp-styles/colors");
 
 module.exports = {
-    content: ["./app/**/*.{ts,tsx,jsx,js}"],
+    content: ["./src/**/*.{ts,tsx,jsx,js}"],
     experimental: { matchVariant: true },
     theme: {
         colors: {
