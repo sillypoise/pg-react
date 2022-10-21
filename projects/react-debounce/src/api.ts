@@ -3,7 +3,8 @@ let api = {
         query: string
     ): Promise<Array<{ id: number; age: number; name: string }>> => {
         return new Promise((resolve) => {
-            setInterval(() => {
+            setTimeout(() => {
+                console.log("💸 API CALL");
                 resolve(
                     [
                         {

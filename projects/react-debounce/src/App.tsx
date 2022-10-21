@@ -1,5 +1,19 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "./api";
+
+function useDebounce(value: string, delay = 1000) {
+    let [debouncedQuery, setDebouncedQuery] = useState(value);
+
+    useEffect(() => {
+        let debouncer = setTimeout(() => {
+            setDebouncedQuery(value);
+        }, delay);
+
+        return () => clearTimeout(debouncer);
+    }, [value, delay]);
+
+    return debouncedQuery;
+}
 
 function App() {
     let [people, setPeople] = useState<
@@ -8,15 +22,18 @@ function App() {
     let [query, setQuery] = useState("");
     let [isLoading, setIsLoading] = useState(false);
 
+    let debouncedQuery = useDebounce(query, 800);
+
     useEffect(() => {
         setIsLoading(true);
-        api.list(query).then((data) => {
+
+        api.list(debouncedQuery).then((data) => {
             if (data) {
-                setPeople(data);
                 setIsLoading(false);
+                setPeople(data);
             }
         });
-    }, [query]);
+    }, [debouncedQuery]);
 
     return (
         <main className="mlb-l">
@@ -38,6 +55,8 @@ function App() {
                     time <code>query</code> changes, it's just that we will
                     control how often that state changes with our debouncer
                 </p>
+                <p>Undebounced: {query}</p>
+                <p>Debounced: {debouncedQuery}</p>
                 <input
                     type="text"
                     name=""
@@ -46,9 +65,20 @@ function App() {
                     onChange={(e) => setQuery(e.target.value)}
                     className="ring-4"
                 />
-                <p>{JSON.stringify(console.count("rendering"))}</p>
+                {/* <p>{JSON.stringify(console.count("rendering"))}</p> */}
                 <hr />
-                {isLoading ? (
+                <ul role="list" className="auto-grid">
+                    {people.map((person) => (
+                        <li
+                            key={person.id}
+                            className="box p-s cluster justify-between rounded-md"
+                        >
+                            <p className="font-semibold">{person.name}</p>
+                            <p>{person.age}</p>
+                        </li>
+                    ))}
+                </ul>
+                {/* {isLoading ? (
                     <p>Loading... </p>
                 ) : (
                     <ul role="list" className="auto-grid">
@@ -62,7 +92,7 @@ function App() {
                             </li>
                         ))}
                     </ul>
-                )}
+                )} */}
             </article>
         </main>
     );
