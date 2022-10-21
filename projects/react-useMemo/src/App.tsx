@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { api } from "./api";
 
 function App() {
@@ -6,8 +6,7 @@ function App() {
         Array<{ id: number; name: string; age: number }>
     >([]);
     let [query, setQuery] = useState("");
-    let [renderCount, setRenderCount] = useState(0);
-    let [sortOption, setSortOption] = useState("name");
+    let [sortOption, setSortOption] = useState("");
 
     useEffect(() => {
         api.list().then((data) => {
@@ -15,33 +14,37 @@ function App() {
         });
     }, []);
 
-    useEffect(() => {
-        setRenderCount((count) => count + 1);
-    }, [query]);
+    // ! UNNECESSARY
+    // useEffect(() => {
+    //     setPeople(sortedData);
+    // }, [sortOption]);
 
     function sortData(
         people: Array<{ id: number; name: string; age: number }>
     ) {
-        console.count("Running sortData! 🏃");
-        console.log("sorting by" + ` ${sortOption}`);
+        console.log("Expensive Calculation 💸💸💸");
         if (sortOption === "name") {
             let sortedByName = [...people].sort((a, b) =>
                 new Intl.Collator("es").compare(a.name, b.name)
             );
-            setPeople(sortedByName);
+            return sortedByName;
         } else if (sortOption === "age") {
-            let sortedByName = [...people].sort((a, b) =>
+            let sortedByAge = [...people].sort((a, b) =>
                 a.age < b.age ? -1 : 1
             );
-            setPeople(sortedByName);
+            return sortedByAge;
         } else {
-            return;
+            return people;
         }
     }
 
+    // Sorting is expensive on every render? Memo it
+    let sortedPeople = useMemo(() => sortData(people), [people, sortOption]);
+    // let sortedPeople = sortData(people);
+
     function handleSortSelect(e: ChangeEvent<HTMLSelectElement>) {
-        setSortOption(e.target.value);
-        sortData(people);
+        let selectedOption = e.target.value;
+        setSortOption(selectedOption);
     }
 
     return (
@@ -54,9 +57,16 @@ function App() {
                     calculation between re-renders.
                 </p>
                 <p>
-                    For example, here we will pretend that sorting our array
-                    alphabetically is an expensive operation that we don't want
-                    to re-do on every re-render
+                    We will pretend that sorting our array alphabetically is an
+                    expensive operation that we don't want to re-do on every
+                    re-render. So we store the calculation in a memoized
+                    variable, i.e. <code>sortedPeople</code>. We loop over that{" "}
+                    <code>sortedPeople</code> array to render the sorted list of
+                    people. Notice we are deriving state instead of unnecessrily
+                    creating more. More importantly we are memoizing
+                    `sortedPeople` calculation and only re-running that if{" "}
+                    <code>people</code> or <code>sortOption</code> state
+                    changes.{" "}
                 </p>
                 <input
                     type="text"
@@ -67,8 +77,10 @@ function App() {
                     className="ring-4"
                 />
                 <p>{JSON.stringify(console.count("rendering"))}</p>
-                <p>Render count: {renderCount}</p>
                 <hr />
+                <p>
+                    Selected sort option: <strong>{sortOption}</strong>
+                </p>
                 <form action="" className="cluster">
                     <label htmlFor="sort-by">Sort-by</label>
                     <select
@@ -78,12 +90,13 @@ function App() {
                         value={sortOption}
                         onChange={handleSortSelect}
                     >
+                        <option value="">none</option>
                         <option value="name">name</option>
                         <option value="age">age</option>
                     </select>
                 </form>
                 <ul role="list" className="auto-grid">
-                    {people.map((person) => (
+                    {sortedPeople.map((person) => (
                         <li
                             key={person.id}
                             className="box p-s cluster justify-between rounded-md"
