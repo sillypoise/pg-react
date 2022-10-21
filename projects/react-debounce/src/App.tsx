@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { api } from "./api";
 
 function useDebounce(value: string, delay = 1000) {
-    let [debouncedQuery, setDebouncedQuery] = useState(value);
+    let [debouncedValue, setDebouncedValue] = useState(value);
 
     useEffect(() => {
         let debouncer = setTimeout(() => {
-            setDebouncedQuery(value);
+            setDebouncedValue(value);
         }, delay);
 
         return () => clearTimeout(debouncer);
     }, [value, delay]);
 
-    return debouncedQuery;
+    return debouncedValue;
 }
 
 function App() {
@@ -27,23 +27,18 @@ function App() {
     // let debouncedQuery = useDebounce(query, 800);
 
     useEffect(() => {
-        let debouncer = setTimeout(() => {
-            setDebouncedQuery(query);
-        }, 500);
-
-        if (query === "") {
-            api.list(query).then((data) => {
-                setIsLoading(false);
-                setPeople(data);
-            });
-            return () => clearTimeout(debouncer);
-        }
         api.list(debouncedQuery).then((data) => {
             if (data) {
                 setIsLoading(false);
                 setPeople(data);
             }
         });
+    }, [debouncedQuery]);
+
+    useEffect(() => {
+        let debouncer = setTimeout(() => {
+            setDebouncedQuery(query);
+        }, 500);
 
         return () => clearTimeout(debouncer);
     }, [query, debouncedQuery]);

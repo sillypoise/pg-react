@@ -36,7 +36,7 @@ let api = {
                         person.name.toLowerCase().includes(query.toLowerCase())
                     )
                 );
-            }, 1000);
+            }, 200);
         });
     },
 };
