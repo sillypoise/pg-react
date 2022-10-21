@@ -6,12 +6,17 @@ function App() {
         Array<{ id: number; name: string; age: number }>
     >([]);
     let [query, setQuery] = useState("");
+    let [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        api.list().then((data) => {
-            setPeople(data);
+        setIsLoading(true);
+        api.list(query).then((data) => {
+            if (data) {
+                setPeople(data);
+                setIsLoading(false);
+            }
         });
-    }, []);
+    }, [query]);
 
     return (
         <main className="mlb-l">
@@ -43,17 +48,21 @@ function App() {
                 />
                 <p>{JSON.stringify(console.count("rendering"))}</p>
                 <hr />
-                <ul role="list" className="auto-grid">
-                    {people.map((person) => (
-                        <li
-                            key={person.id}
-                            className="box p-s cluster justify-between rounded-md"
-                        >
-                            <p className="font-semibold">{person.name}</p>
-                            <p>{person.age}</p>
-                        </li>
-                    ))}
-                </ul>
+                {isLoading ? (
+                    <p>Loading... </p>
+                ) : (
+                    <ul role="list" className="auto-grid">
+                        {people.map((person) => (
+                            <li
+                                key={person.id}
+                                className="box p-s cluster justify-between rounded-md"
+                            >
+                                <p className="font-semibold">{person.name}</p>
+                                <p>{person.age}</p>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </article>
         </main>
     );
