@@ -4,7 +4,7 @@ let api = {
     ): Promise<Array<{ id: number; age: number; name: string }>> => {
         return new Promise((resolve) => {
             setTimeout(() => {
-                console.log("💸 API CALL");
+                console.count("API CALL 💸");
                 resolve(
                     [
                         {

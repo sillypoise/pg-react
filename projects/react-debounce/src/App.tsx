@@ -20,20 +20,33 @@ function App() {
         Array<{ id: number; name: string; age: number }>
     >([]);
     let [query, setQuery] = useState("");
-    let [isLoading, setIsLoading] = useState(false);
+    let [isLoading, setIsLoading] = useState(true);
+    let [debouncedQuery, setDebouncedQuery] = useState(query);
 
-    let debouncedQuery = useDebounce(query, 800);
+    // * Using custom useDebounce hook
+    // let debouncedQuery = useDebounce(query, 800);
 
     useEffect(() => {
-        setIsLoading(true);
+        let debouncer = setTimeout(() => {
+            setDebouncedQuery(query);
+        }, 500);
 
+        if (query === "") {
+            api.list(query).then((data) => {
+                setIsLoading(false);
+                setPeople(data);
+            });
+            return () => clearTimeout(debouncer);
+        }
         api.list(debouncedQuery).then((data) => {
             if (data) {
                 setIsLoading(false);
                 setPeople(data);
             }
         });
-    }, [debouncedQuery]);
+
+        return () => clearTimeout(debouncer);
+    }, [query, debouncedQuery]);
 
     return (
         <main className="mlb-l">
@@ -55,8 +68,12 @@ function App() {
                     time <code>query</code> changes, it's just that we will
                     control how often that state changes with our debouncer
                 </p>
-                <p>Undebounced: {query}</p>
-                <p>Debounced: {debouncedQuery}</p>
+                <p>
+                    Undebounced: <strong>{query}</strong>
+                </p>
+                <p>
+                    Debounced: <strong>{debouncedQuery}</strong>
+                </p>
                 <input
                     type="text"
                     name=""
@@ -65,20 +82,9 @@ function App() {
                     onChange={(e) => setQuery(e.target.value)}
                     className="ring-4"
                 />
-                {/* <p>{JSON.stringify(console.count("rendering"))}</p> */}
+                <p>{JSON.stringify(console.count("rendering"))}</p>
                 <hr />
-                <ul role="list" className="auto-grid">
-                    {people.map((person) => (
-                        <li
-                            key={person.id}
-                            className="box p-s cluster justify-between rounded-md"
-                        >
-                            <p className="font-semibold">{person.name}</p>
-                            <p>{person.age}</p>
-                        </li>
-                    ))}
-                </ul>
-                {/* {isLoading ? (
+                {isLoading ? (
                     <p>Loading... </p>
                 ) : (
                     <ul role="list" className="auto-grid">
@@ -92,7 +98,7 @@ function App() {
                             </li>
                         ))}
                     </ul>
-                )} */}
+                )}
             </article>
         </main>
     );
