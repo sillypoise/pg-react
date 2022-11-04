@@ -4,9 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "vite",
+        "dev": "run-p \"dev:*\"",
+        "dev:css": "pnpm generate:css --watch",
+        "dev:vite": "vite",
         "build": "tsc && vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "generate:css": "tailwindcss -i ../../sp-styles/tailwind.css -o ./styles/tailwind.css"
     },
     "keywords": [],
     "author": "",
