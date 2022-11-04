@@ -10,6 +10,13 @@
         "preview": "vite preview",
         "generate:css": "tailwindcss -i ../../sp-styles/tailwind.css -o ./styles/tailwind.css"
     },
-    "dependencies": {},
-    "devDependencies": {}
+    "dependencies": {
+        "@react-three/drei": "^9.40.0",
+        "@react-three/fiber": "^8.9.1",
+        "@react-three/postprocessing": "^2.7.0",
+        "three": "^0.146.0"
+    },
+    "devDependencies": {
+        "@types/three": "^0.144.0"
+    }
 }
